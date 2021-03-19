@@ -27,6 +27,8 @@ jobs:
                   packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
               run: |
                   ./gradlew publish
+            - name: Generate Codecov Report
+              uses: codecov/codecov-action@v1
             - name: Dispatch Dependent Module Builds
               if: github.event.action != 'stdlib-publish-snapshot'
               run: |
@@ -41,3 +43,5 @@ jobs:
                       "module": "${{ github.repository }}"
                     }
                   }'
+
+
